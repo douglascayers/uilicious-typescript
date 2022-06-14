@@ -11,13 +11,15 @@
 /**
  * Reference properties defined in the dataset for this test run.
  */
-declare const DATA: Record<string, any> = {};
+declare const DATA: Record<string, any>;
 
 declare namespace I {
   /**
    * Goes to the specified url, optionally opening in a new tab.
+   * If the URL is valid then always returns true, regardless the HTTP status.
    */
-  function goTo(url: string, options?: { newTab: boolean }): void;
+  function goTo(url: string, options?: { newTab: boolean }): boolean;
+  function goTo$(url: string, options?: { newTab: boolean }): boolean;
   /**
    * Refreshes the current page.
    */
@@ -324,35 +326,35 @@ declare namespace UI {
   /**
    * Asserts that the status code for the current page is a specific status code.
    */
-  function isStatusCode(statusCode: number): void;
+  function isStatusCode(statusCode: number): boolean;
   /**
    * Asserts that the status code for the current page is NOT a specific status code.
    */
-  function isNotStatusCode(statusCode: number): void;
+  function isNotStatusCode(statusCode: number): boolean;
   /**
    * Asserts that the status code for the current page is 200 (OK).
    */
-  function is200(): void;
+  function is200(): boolean;
   /**
    * Asserts that the status code for the current page is NOT 200 (OK).
    */
-  function isNot200(): void;
+  function isNot200(): boolean;
   /**
    * Asserts that the status code for the current page is 404 (Not Found).
    */
-  function is400(): void;
+  function is400(): boolean;
   /**
    * Asserts that the status code for the current page is NOT 404 (Not Found).
    */
-  function isNot400(): void;
+  function isNot400(): boolean;
   /**
    * Asserts that the status code for the current page is 500 (Internal Server Error).
    */
-  function is500(): void;
+  function is500(): boolean;
   /**
    * Asserts that the status code for the current page is NOT 500 (Internal Server Error).
    */
-  function isNot500(): void;
+  function isNot500(): boolean;
   /**
    * Executes Javascript on the browser and returns the result.
    *
