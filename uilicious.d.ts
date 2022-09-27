@@ -425,11 +425,11 @@ declare namespace UI {
   /**
    * Assert the presence of a CSS class on an element.
    */
-  function hasClass(target: string, clazz: string): void;
+  function hasClass(target: string, clazz: string): boolean;
   /**
    * Assert the absence of a CSS class on an element.
    */
-  function doesNotHaveClass(target: string, clazz: string): void;
+  function doesNotHaveClass(target: string, clazz: string): boolean;
   /**
    * Get the outer HTML of an element.
    */
