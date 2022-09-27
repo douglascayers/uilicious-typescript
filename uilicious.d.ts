@@ -414,6 +414,11 @@ declare namespace UI {
     attribute: string,
     value?: string,
   ): boolean;
+  function hasAttribute$(
+    target: string,
+    attribute: string,
+    value?: string,
+  ): boolean;
   /**
    * Assert the absense of an attribute on an element, or that the value of an attribute is not equals a given string.
    */
@@ -422,14 +427,21 @@ declare namespace UI {
     attribute: string,
     value?: string,
   ): boolean;
+  function doesNotHaveAttribute$(
+    target: string,
+    attribute: string,
+    value?: string,
+  ): boolean;
   /**
    * Assert the presence of a CSS class on an element.
    */
   function hasClass(target: string, clazz: string): boolean;
+  function hasClass$(target: string, clazz: string): boolean;
   /**
    * Assert the absence of a CSS class on an element.
    */
   function doesNotHaveClass(target: string, clazz: string): boolean;
+  function doesNotHaveClass$(target: string, clazz: string): boolean;
   /**
    * Get the outer HTML of an element.
    */
