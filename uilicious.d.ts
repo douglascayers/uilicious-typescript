@@ -413,7 +413,7 @@ declare namespace UI {
     target: string,
     attribute: string,
     value?: string,
-  ): void;
+  ): boolean;
   /**
    * Assert the absense of an attribute on an element, or that the value of an attribute is not equals a given string.
    */
@@ -421,7 +421,7 @@ declare namespace UI {
     target: string,
     attribute: string,
     value?: string,
-  ): void;
+  ): boolean;
   /**
    * Assert the presence of a CSS class on an element.
    */
