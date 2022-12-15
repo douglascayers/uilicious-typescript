@@ -607,3 +607,143 @@ declare namespace TEST {
     fail(message: string): void;
   };
 }
+
+declare namespace SAMPLE {
+  /**
+   * Generates a random string useful for IDs and password.
+   */
+  function id(
+    /**
+     * Length of the string to generate.
+     */
+    length?: number,
+    /**
+     * A string to use as the seed for randomization.
+     */
+    token?: string,
+  ): string;
+
+  /**
+   * Generates a random phone number.
+   */
+  function phone(
+    options?: {
+      /**
+       * If true then formats the number such as (123) 456-7890
+       * Default is true.
+       */
+      formatted?: boolean;
+      /**
+       * The country the phone number is for.
+       * Default is 'us'.
+       */
+      country?: 'uk' | 'us' | 'fr';
+      /**
+       * Format as a mobile number?
+       * Not applicable for 'us' as mobile and non-mobile numbers look the same.
+       */
+      mobile?: boolean;
+      /**
+       * A string to use as the seed for randomization.
+       */
+      token?: string;
+    },
+    /**
+     * A string to use as the seed for randomization.
+     */
+    token?: string,
+  ): string;
+
+  /**
+   * Generates a random first name.
+   */
+  function first(
+    options?: {
+      /**
+       * A string to use as the seed for randomization.
+       */
+      token?: string;
+    },
+    /**
+     * A string to use as the seed for randomization.
+     */
+    token?: string,
+  );
+
+  /**
+   * Generates a random last name.
+   */
+  function last(
+    options?: {
+      /**
+       * A string to use as the seed for randomization.
+       */
+      token?: string;
+    },
+    /**
+     * A string to use as the seed for randomization.
+     */
+    token?: string,
+  );
+
+  /**
+   * Generates a random full name as a single string.
+   */
+  function name(
+    options?: {
+      /**
+       * Include a middle name.
+       * Overrides `middle_initial` if that is set.
+       */
+      middle?: boolean;
+      /**
+       * Include a middle initial.
+       */
+      middle_initial?: boolean;
+      /**
+       * Prefixes the name like with 'Mr.', 'Mrs.', 'Miss', 'Dr.', etc.
+       */
+      prefix?: boolean;
+      /**
+       * Suffixes the name like with 'D.O.', 'M.S.', 'Sr.', etc.
+       */
+      suffix?: boolean;
+      /**
+       * Generate a male or female name?
+       */
+      gender?: 'male' | 'female';
+      /**
+       * A string to use as the seed for randomization.
+       */
+      token?: string;
+    },
+    /**
+     * A string to use as the seed for randomization.
+     */
+    token?: string,
+  );
+
+  /**
+   * Generates a random email address.
+   */
+  function email(
+    options?: {
+      /**
+       * Specific domain to use instead of a random one.
+       */
+      domain?: string;
+      /**
+       * Length of the username part left of the domain.
+       */
+      length?: number;
+      /**
+       * A string to use as the seed for randomization.
+       */
+      token?: string;
+    },
+    /**
+     * A string to use as the seed for randomization.
+     */
+    token?: string,
+  );
+}
