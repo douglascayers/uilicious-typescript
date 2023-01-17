@@ -41,6 +41,10 @@ declare namespace I {
   function amAt(url: string): void;
   function amAt$(url: string): boolean;
   /**
+   * Get the url of the current tab.
+   */
+  function getURL(): string;
+  /**
    * Clears an input field.
    *
    * Warning, as of Feb '22, if the target can't be found then
@@ -474,6 +478,88 @@ declare namespace UI {
       target: 'viewport' | 'window';
     },
   ): void;
+  /**
+   * HTTP Requests
+   */
+  type HttpRequestOptions = {
+    /**
+     * The url to send the HTTP request to.
+     */
+    url?: string;
+    /**
+     * The HTTP method to use, e.g. GET, HEAD, OPTIONS, POST, PUT, PATCH, DELETE.
+     * Ignored when UI.httpGet and UI.httpPost commands are used.
+     */
+    method?: string;
+    /**
+     * The request data to send. Ignored for GET and HEAD methods.
+     * If data is a json object, and content-type header is not specified,
+     * the content-type will automatically default to application/json;charset=utf-8
+     */
+    data?: string | Record<string, any>;
+    /**
+     * Key-value map to set the url search parameters.
+     * If the value is an array then the key is repeated for each value.
+     */
+    params?: Record<string, string | number | boolean | string[] | number[] | boolean[]>;
+    /**
+     * The expected response type.
+     * By default, the response's data object will contain the raw response body as a string.
+     * If set to "json", the response's data object will be automatically parsed to JSON.
+     */
+    responseType?: string;
+    /**
+     * Map of request headers to set.
+     */
+    headers?: Record<string, string>;
+    /**
+     * Basic authentication credentials.
+     * Overrides the Authorization header.
+     */
+    auth?: Record<'username' | 'password', string>;
+    /**
+     * Defaults to true. If true, allows cross-site requests to be made using
+     * credentials such as cookies, Authorization headers or
+     * TLS client certificates, and allows cookies from response to be set.
+     *
+     * If this is false, you might get CORS or Network errors
+     * when making cross-site requests.
+     */
+    withCredentials?: boolean;
+  };
+  type HttpResponse = {
+    /**
+     * Response status code (e.g. 200)
+     */
+    status: number;
+    /**
+     * Response status text (e.g. 'OK')
+     */
+    statusText: string;
+    /**
+     * Response type (e.g. 'json')
+     */
+    responseType: string;
+    /**
+     * If requested response type is "json", this is automatically parsed
+     * into JSON object. Otherwise, this is a string containing the raw
+     * response body.
+     */
+    data: string | Record<string, any>;
+  };
+  function httpRequest(options: HttpRequestOptions): HttpResponse;
+  /**
+   * Execute an HTTP request. This is done via JavaScript so CORS applies.
+   * Any cookies in the browser session will be sent, which can be helpful.
+   */
+  function httpGet(url: string): HttpResponse;
+  function httpGet(url: string, options?: HttpRequestOptions): HttpResponse;
+  /**
+   * Execute an HTTP request. This is done via JavaScript so CORS applies.
+   * Any cookies in the browser session will be sent, which can be helpful.
+   */
+  function httpPost(url: string): HttpResponse;
+  function httpPost(url: string, options?: HttpRequestOptions): HttpResponse;
   /**
    * https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
    */
